@@ -13,6 +13,20 @@ if [[ $# != 1 ]]; then
 	exit 1
 fi
 
+# check requirements
+if [[ ! $(which git) ]]; then
+	echo "🤯 go is not installed, exit!"
+	exit 1
+fi
+if [[ ! $(which podman) || ! $(which docker) ]]; then
+	echo "🤯 neither podman or docker is installed, exit!"
+	exit 1
+fi
+if [[ ! $(which patch) ]]; then
+	echo "🤯 patch is not installed, exit!"
+	exit 1
+fi
+
 readonly REFERENCE_RPM=$1
 readonly WORK_DIR=$(pwd)/work
 
